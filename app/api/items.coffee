@@ -28,4 +28,4 @@ module.exports =
 
   nearby: (limit, offset, range = 50)-> action 'nearby', { limit, offset, range }
 
-  inventoryView: action 'inventory-view'
+  inventoryView: (params)-> action 'inventory-view', params
