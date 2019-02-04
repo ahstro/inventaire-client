@@ -1,8 +1,5 @@
 ResultsList = require './results_list'
 Entities = require 'modules/entities/collections/entities'
-ItemsList = require 'modules/inventory/views/items_list'
-EntityEdit = require 'modules/entities/views/editor/entity_edit'
-wd_ = require 'lib/wikimedia/wikidata'
 isbn_ = require 'lib/isbn'
 behaviorsPlugin = require 'modules/general/plugins/behaviors'
 { startLoading } = require 'modules/general/plugins/behaviors'
