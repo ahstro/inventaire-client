@@ -20,7 +20,6 @@ module.exports = Marionette.LayoutView.extend
 
   initialize: ->
     entityItems.initialize.call @
-    { @item } = @options
     @displayMergeSuggestions = app.user.isAdmin
 
   serializeData: ->
@@ -29,18 +28,6 @@ module.exports = Marionette.LayoutView.extend
 
   onShow: ->
     @showWorkInfobox()
-
-    if @item? then @showItemModal @item
-    else @completeShow()
-
-  showItemModal: (item)->
-    app.execute 'show:item:modal', item
-    @listenToOnce app.vent, 'modal:closed', @onClosedItemModal.bind(@)
-
-  completeShow: ->
-    # Run only once
-    if @_showWasCompleted then return
-    @_showWasCompleted = true
 
     # Need to wait to know if the user has an instance of this work
     @waitForItems
@@ -68,13 +55,6 @@ module.exports = Marionette.LayoutView.extend
       onWorkLayout: true
 
   toggleWikipediaPreview: -> @$el.trigger 'toggleWikiIframe', @
-
-  onClosedItemModal: ->
-    @completeShow()
-    app.navigateFromModel @model, null, { preventScrollTop: true }
-
-  # Close the item modal when another view is shown in place of this layout
-  onDestroy: -> app.execute 'modal:close'
 
   showMergeSuggestions: ->
     app.execute 'show:merge:suggestions', { @model, region: @mergeSuggestionsRegion }
