@@ -2,7 +2,7 @@ ItemCreationForm = require '../views/form/item_creation'
 EditionsList = require 'modules/entities/views/editions_list'
 
 module.exports = (params)->
-  { entity, preventduplicates } = params
+  { entity } = params
   unless entity? then throw new Error 'missing entity'
 
   { type } = entity
@@ -21,22 +21,8 @@ module.exports = (params)->
 
   uri = entity.get 'uri'
 
-  if preventduplicates
-    waiter = app.request 'item:main:user:instances', uri
-  else
-    waiter = Promise.resolve()
-
-  waiter
-  .then (existingInstances)->
-    if preventduplicates and existingInstances.length > 0
-      # TODO: display an option to force the creation of a duplicate
-      app.execute 'show:items:from:models', existingInstances
-      return
-
-    params.existingInstances = existingInstances
-
-    app.layout.main.show new ItemCreationForm params
-    app.navigate pathname
+  app.layout.main.show new ItemCreationForm params
+  app.navigate pathname
 
 showEditionPicker = (work)->
   app.layout.modal.show new EditionsList

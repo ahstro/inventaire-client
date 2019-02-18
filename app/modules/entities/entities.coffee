@@ -100,11 +100,7 @@ API =
   showAddEntity: (uri)->
     uri = normalizeUri uri
     getEntityModel uri
-    .then (entity)->
-      app.execute 'show:item:creation:form',
-        entity: entity
-        preventduplicates: true
-
+    .then (entity)-> app.execute 'show:item:creation:form', { entity }
     .catch handleMissingEntity(uri)
 
   showEditEntityFromUri: (uri)->
