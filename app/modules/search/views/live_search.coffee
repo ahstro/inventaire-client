@@ -230,9 +230,9 @@ formatEntity = (entity)->
 
 sectionsData = ->
   all: { label: 'all' }
-  book: { label: 'book' }
-  author: { label: 'author' }
-  serie: { label: 'series_singular' }
-  user: { label: 'user' }
-  group: { label: 'group' }
-  subject: { label: 'subject' }
+  book: { label: 'books' }
+  author: { label: 'authors' }
+  serie: { label: 'series' }
+  user: { label: 'users' }
+  group: { label: 'groups' }
+  subject: { label: 'subjects' }
