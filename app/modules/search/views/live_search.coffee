@@ -196,7 +196,7 @@ module.exports = Marionette.CompositeView.extend
     app.execute 'show:entity:create', { label: @_lastSearch }
 
 sectionToTypes =
-  all: [ 'works', 'humans', 'series', 'users', 'groups' ]
+  all: [ 'works', 'humans', 'series', 'users', 'groups', 'publishers' ]
   book: 'works'
   author: 'humans'
   serie: 'series'
